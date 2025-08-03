@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Notes - CU Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 30px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 400px;
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Upload Your Notes</h1>
+  <form id="uploadForm">
+    <label for="uploaderName">Your Name:</label>
+    <input type="text" id="uploaderName" required>
+
+    <label for="noteTitle">Note Title:</label>
+    <input type="text" id="noteTitle" required>
+
+    <label for="file">Select File:</label>
+    <input type="file" id="file" accept=".pdf,.jpg,.png" required>
+
+    <button type="submit">Upload</button>
+  </form>
+
+  <script src="scripts/upload.js"></script>
+</body>
+</html>

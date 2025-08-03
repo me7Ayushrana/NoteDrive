@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel | NoteDrive</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    .note-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 600px;
+    }
+
+    .note-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #222;
+    }
+
+    .note-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .buttons button {
+      padding: 8px 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .approve {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .reject {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Admin Panel - Approve Notes</h1>
+
+  <div id="pendingContainer"></div>
+
+  <script>
+    function loadPendingNotes() {
+      const pendingNotes = JSON.parse(localStorage.getItem('pendingNotes')) || [];
+      const publicNotes = JSON.parse(localStorage.getItem('publicNotes')) || [];
+      const container = document.getElementById('pendingContainer');
+      container.innerHTML = '';
+
+      if (pendingNotes.length === 0) {
+        container.innerHTML = '<p style="text-align:center;">No pending notes.</p>';
+        return;
+      }
+
+      pendingNotes.forEach((note, index) => {
+        const card = document.createElement('div');
+        card.className = 'note-card';
+
+        card.innerHTML = `
+          <h3>${note.title}</h3>
+          <p>${note.content}</p>
+          <p><strong>Uploaded by:</strong> ${note.username}</p>
+          <div class="buttons">
+            <button class="approve">Approve</button>
+            <button class="reject">Reject</button>
+          </div>
+        `;
+
+        card.querySelector('.approve').addEventListener('click', () => {
+          publicNotes.push(note);
+          pendingNotes.splice(index, 1);
+          localStorage.setItem('publicNotes', JSON.stringify(publicNotes));
+          localStorage.setItem('pendingNotes', JSON.stringify(pendingNotes));
+          loadPendingNotes();
+        });
+
+        card.querySelector('.reject').addEventListener('click', () => {
+          pendingNotes.splice(index, 1);
+          localStorage.setItem('pendingNotes', JSON.stringify(pendingNotes));
+          loadPendingNotes();
+        });
+
+        container.appendChild(card);
+      });
+    }
+
+    loadPendingNotes();
+  </script>
+</body>
+</html>

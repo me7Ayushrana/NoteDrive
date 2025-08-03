@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<img src="logo.jpg" alt="Logo">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NoteDrive – CU Only</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="logo.jpg"/>
+
+</head>
+<body class="dark">
+  <header>
+    <img src="logo.jpg" alt="NoteDrive Logo" class="logo">
+    <h1>NoteDrive</h1>
+    <p class="tagline">A Part of CU Only Community</p>
+    <div class="controls">
+      <span class="notification-badge"> </span>
+      <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
+    </div>
+  </header>
+
+  <section class="contact-info">
+    <p>Created by <strong>Ayush Rana</strong></p>
+    <p>📩 <a href="mailto:ayushamit007@gmail.com">ayushamit007@gmail.com</a></p>
+    <p>📷 <a href="https://www.instagram.com/ayushrana.me" target="_blank">@ayushrana.me</a></p>
+  </section>
+
+  <section class="search-filter">
+    <input type="text" id="search" placeholder="🔍 Search Notes...">
+    <select id="branch-filter">
+      <option value="">Filter by Branch</option>
+      <option>CSE</option>
+      <option>ECE</option>
+      <option>ME</option>
+      <option>CE</option>
+    </select>
+    <select id="sem-filter">
+      <option value="">Filter by Semester</option>
+      <option>1st</option>
+      <option>2nd</option>
+      <option>3rd</option>
+      <option>4th</option>
+    </select>
+  </section>
+
+  <section class="upload-section">
+    <h2>Upload Notes (Approval Required)</h2>
+    <form id="uploadForm">
+      <input type="text" placeholder="Uploader's Name" required>
+      <input type="text" placeholder="Subject Name" required>
+      <input type="text" placeholder="Branch (e.g., CSE)" required>
+      <input type="text" placeholder="Semester (e.g., 3rd)" required>
+      <input type="file" required>
+      <button type="submit">Upload Note</button>
+    </form>
+    <p class="info-msg">📌 Note: Uploaded notes will be visible after admin (Ayush Rana) approval.</p>
+  </section>
+
+  <section class="notes-list">
+    <h2>📚 Recently Shared Notes</h2>
+    <div class="note-card">
+      <h3>Data Structures</h3>
+      <p>Branch: CSE | Semester: 3rd</p>
+      <p>Uploaded by: Ananya Sharma</p>
+      <button>📥 Download</button>
+      <p>⬇️ Downloads: 24</p>
+    </div>
+    <div class="note-card">
+      <h3>Digital Electronics</h3>
+      <p>Branch: ECE | Semester: 2nd</p>
+      <p>Uploaded by: Harman Singh</p>
+      <button>📥 Download</button>
+      <p>⬇️ Downloads: 14</p>
+    </div>
+<div class="upload-section fade-in">...</div>
+<div class="notes-list fade-in">...</div>
+
+<section id="adminLogin" class="admin-login fade-in">
+  <h2>🔐 Admin Login</h2>
+  <input type="text" id="adminUsername" placeholder="Enter Username" />
+  <input type="password" id="adminPassword" placeholder="Enter Password" />
+  <button onclick="checkAdminLogin()">Login</button>
+  <p id="loginError" class="error-msg"></p>
+</section>
+
+  </section>
+<section id="adminPanel" class="admin-panel fade-in">
+  <h2>📋 Pending Upload Approvals</h2>
+
+  <div class="admin-note-card">
+    <p><strong>Subject:</strong> Physics</p>
+    <p><strong>Uploaded By:</strong> Ravi Sharma</p>
+    <button class="approve">✅ Approve</button>
+    <button class="reject">❌ Reject</button>
+  </div>
+
+  <div class="admin-note-card">
+    <p><strong>Subject:</strong> Math</p>
+    <p><strong>Uploaded By:</strong> Neha Yadav</p>
+    <button class="approve">✅ Approve</button>
+    <button class="reject">❌ Reject</button>
+  </div>
+
+  <!-- Add more cards dynamically if connected to backend -->
+</section>
+
+
+  <footer>
+    <p>© 2025 NoteDrive | Built with ❤️ by Ayush Rana</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+<script>
+  const correctUsername = "ayush";
+  const correctPassword = "071623"; // Change to your own secure password
+
+  function checkAdminLogin() {
+    const user = document.getElementById("adminUsername").value;
+    const pass = document.getElementById("adminPassword").value;
+    const error = document.getElementById("loginError");
+
+    if (user === correctUsername && pass === correctPassword) {
+      document.getElementById("adminLogin").style.display = "none";
+      document.getElementById("adminPanel").classList.remove("hidden");
+    } else {
+      error.textContent = "❌ Incorrect username or password!";
+    }
+  }
+</script>
+<!-- Before closing </body> tag -->
+<script src="script.js"></script>
+</body>
+
+</body>
+</html>
